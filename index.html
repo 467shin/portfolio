@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" class="overflow-hidden">
+<html lang="ko" class="lg:overflow-hidden">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -19,6 +19,19 @@
       .namum-gothic {
         font-family: "Nanum Gothic", sans-serif;
       }
+
+      @keyframes fade-in {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .fade-in-element {
+      animation: fade-in 2s ease-in-out;
+    }
     </style>
     <script>
       tailwind.config = {
@@ -27,7 +40,7 @@
     </script>
   </head>
   <body class="namum-gothic dark:bg-slate-800 dark:text-slate-100">
-    <div class="w-auto h-auto">
+    <div class="w-auto h-auto fade-in-element">
       <img src="./zoo-2833228.jpg" alt="fennec" class="w-screen h-screen" />
     </div>
 
@@ -129,24 +142,10 @@
 
     <div id="About" class="w-screen h-screen relative">
       <div class="h-1/3 p-10 flex justify-center items-center">
-        <p class="text-5xl">안녕하세요!</p>
+        <p class="lg:text-5xl text-3xl">안녕하세요!</p>
       </div>
       <div class="h-2/3 flex">
-        <div
-          class="w-full h-full border-4 text-5xl flex justify-center items-center"
-        >
-          삼
-        </div>
-        <div
-          class="w-full h-full border-4 text-5xl flex justify-center items-center"
-        >
-          형
-        </div>
-        <div
-          class="w-full h-full border-4 text-5xl flex justify-center items-center"
-        >
-          제
-        </div>
+        
       </div>
     </div>
     <div id="Skills" class="w-screen h-screen p-10">스킬</div>
@@ -279,9 +278,9 @@
     };
 
     darkModeToggle = () => {
-      document.querySelector("html").className !== "dark overflow-hidden"
-        ? (document.querySelector("html").className = "dark overflow-hidden")
-        : (document.querySelector("html").className = "light overflow-hidden");
+      document.querySelector("html").className !== "dark lg:overflow-hidden"
+        ? (document.querySelector("html").className = "dark lg:overflow-hidden")
+        : (document.querySelector("html").className = "lg:overflow-hidden");
     };
   </script>
 </html>
