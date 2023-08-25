@@ -289,7 +289,10 @@
       // 스크롤 이벤트 리스너 추가
       window.addEventListener("scroll", scrollEvent);
 
-      window.addEventListener("touchmove", scrollEvent);
+      window.addEventListener("resize", function () {
+        // 높이를 다시 계산하고 애니메이션 상태 갱신
+        scrollEvent();
+      });
 
       // 페이지 로드 시 한번 체크
       scrollEvent();
