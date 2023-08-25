@@ -302,7 +302,8 @@
     var scrollEvent = function () {
       // 사용자 모니터 화면 높이 + 스크롤이 움직인 높이
       var scrollPosition = window.pageYOffset;
-      var windowHeight = window.innerHeight;
+      var windowHeight = document.documentElement.clientHeight;
+      // var windowHeight = window.innerHeight;
 
       // 애니메이션 효과를 넣을 DOM 객체 배열
       var itemList = document.querySelectorAll("div.animatable, div.animated");
