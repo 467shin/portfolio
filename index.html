@@ -2,10 +2,7 @@
 <html lang="ko" class="md:overflow-hidden">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link
       rel="icon"
@@ -292,7 +289,6 @@
     window.onload = function () {
       // 스크롤 이벤트 리스너 추가
       window.addEventListener("scroll", scrollEvent);
-      window.addEventListener("touchmove", scrollEvent);
 
       window.addEventListener("resize", function () {
         // 높이를 다시 계산하고 애니메이션 상태 갱신
@@ -305,7 +301,7 @@
 
     var scrollEvent = function () {
       // 사용자 모니터 화면 높이 + 스크롤이 움직인 높이
-      var scrollPosition = window.scrollY;
+      var scrollPosition = window.pageYOffset;
       var windowHeight = window.innerHeight;
 
       // 애니메이션 효과를 넣을 DOM 객체 배열
