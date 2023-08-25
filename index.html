@@ -286,21 +286,6 @@
         $html.animate({ scrollTop: posTop });
       });
 
-      $(window).on("touchmove", function (e) {
-        if ($html.is(":animated")) return;
-
-        if (e.originalEvent.deltaY > 0) {
-          if (page == lastPage) return;
-          page++;
-        } else if (e.originalEvent.deltaY < 0) {
-          if (page == 1) return;
-          page--;
-        }
-        var posTop = (page - 1) * $(window).height();
-
-        $html.animate({ scrollTop: posTop });
-      });
-
       // window.onload = function () {
       //   // 스크롤 이벤트 리스너 추가
       //   window.addEventListener("scroll", scrollEvent);
