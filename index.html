@@ -301,7 +301,8 @@
 
     var scrollEvent = function () {
       // 사용자 모니터 화면 높이 + 스크롤이 움직인 높이
-      var scrollPosition = window.pageYOffset;
+      // var scrollPosition = window.pageYOffset;
+      var scrollPosition = document.documentElement.scrollTop;
       var windowHeight = document.documentElement.clientHeight;
       // var windowHeight = window.innerHeight;
 
