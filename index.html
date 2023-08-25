@@ -1,8 +1,12 @@
 <!DOCTYPE html>
-<html lang="ko" class="lg:overflow-hidden">
+<html lang="ko" class="md:overflow-hidden">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
     <link
       rel="icon"
       href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNRnBEYwlv5a08htz-GhAatphouSURO0d1HJ8l-2Kugg&s"
@@ -288,6 +292,7 @@
     window.onload = function () {
       // 스크롤 이벤트 리스너 추가
       window.addEventListener("scroll", scrollEvent);
+      window.addEventListener("touchmove", scrollEvent);
 
       window.addEventListener("resize", function () {
         // 높이를 다시 계산하고 애니메이션 상태 갱신
