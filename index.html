@@ -20,18 +20,34 @@
         font-family: "Nanum Gothic", sans-serif;
       }
 
-      @keyframes fade-in {
-      from {
-        opacity: 0;
+      /*화면에 표출되기 전*/
+      .animatable {
+        visibility: hidden;
+        animation-play-state: paused;
       }
-      to {
-        opacity: 1;
-      }
-    }
 
-    .fade-in {
-      animation: fade-in 2s ease-in-out;
-    }
+      /*화면에 표출된 후*/
+      .animated {
+        animation-name: fade-in;
+        visibility: visible;
+        animation-fill-mode: both;
+        animation-duration: 1.5s;
+        animation-play-state: running;
+        animation-timing-function: ease-in-out;
+      }
+
+      @keyframes fade-in {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .fade-in {
+        animation: fade-in 2s ease-in-out;
+      }
     </style>
     <script>
       tailwind.config = {
@@ -40,7 +56,7 @@
     </script>
   </head>
   <body class="namum-gothic dark:bg-slate-800 dark:text-slate-100">
-    <div class="w-auto h-auto fade-in">
+    <div class="w-auto h-auto animatable">
       <img src="./zoo-2833228.jpg" alt="fennec" class="w-screen h-screen" />
     </div>
 
@@ -78,7 +94,7 @@
           <ul
             class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
           >
-            <li class="lg:order-first order-last self-end">
+            <li class="md:order-first order-last self-end">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -106,7 +122,7 @@
             </li>
             <li>
               <button
-                onclick="pageSet(2)"
+                onclick="pageSet(2); setFadeIn(2)"
                 class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
               >
                 About
@@ -140,16 +156,14 @@
       </div>
     </nav>
 
-    <div id="About" class="w-screen h-screen relative">
+    <div class="w-screen h-screen relative animatable">
       <div class="h-1/3 p-10 flex justify-center items-center">
         <p class="lg:text-5xl text-3xl">안녕하세요!</p>
       </div>
-      <div class="h-2/3 flex">
-        
-      </div>
+      <div class="h-2/3 flex"></div>
     </div>
-    <div id="Skills" class="w-screen h-screen p-10">스킬</div>
-    <div id="Projects" class="w-screen h-screen p-10">프젝</div>
+    <div class="w-screen h-screen p-10 animatable">스킬</div>
+    <div class="w-screen h-screen p-10 animatable">프젝</div>
 
     <!-- footer -->
     <footer class="bg-white dark:bg-gray-900">
@@ -270,6 +284,42 @@
 
       $html.animate({ scrollTop: posTop });
     });
+
+    window.onload = function () {
+      // 스크롤 이벤트 리스너 추가
+      window.addEventListener("scroll", scrollEvent);
+
+      // 페이지 로드 시 한번 체크
+      scrollEvent();
+    };
+
+    var scrollEvent = function () {
+      // 사용자 모니터 화면 높이 + 스크롤이 움직인 높이
+      var scrollPosition = window.scrollY;
+      var windowHeight = window.innerHeight;
+
+      // 애니메이션 효과를 넣을 DOM 객체 배열
+      var itemList = document.querySelectorAll("div.animatable, div.animated");
+
+      Array.prototype.forEach.call(itemList, function (i) {
+        var iTop = i.offsetTop;
+        var iBottom = iTop + i.clientHeight;
+
+        // 객체 위치와 높이 비교 : 화면에 표출되는 높이인지 체크
+        if (iBottom > scrollPosition && iTop < scrollPosition + windowHeight) {
+          // 객체 animatable 클래스 지우고, animated 클래스 추가
+          i.classList.remove("animatable");
+          i.classList.add("animated");
+        } else if (
+          iBottom < scrollPosition ||
+          iTop > scrollPosition + windowHeight
+        ) {
+          // 객체 animated 클래스 지우고, animatable 클래스 추가
+          i.classList.remove("animated");
+          i.classList.add("animatable");
+        }
+      });
+    };
 
     var pageSet = (n) => {
       page = n;
