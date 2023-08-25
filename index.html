@@ -286,48 +286,48 @@
       $html.animate({ scrollTop: posTop });
     });
 
-    window.onload = function () {
-      // 스크롤 이벤트 리스너 추가
-      window.addEventListener("scroll", scrollEvent);
+    // window.onload = function () {
+    //   // 스크롤 이벤트 리스너 추가
+    //   window.addEventListener("scroll", scrollEvent);
 
-      window.addEventListener("resize", function () {
-        // 높이를 다시 계산하고 애니메이션 상태 갱신
-        scrollEvent();
-      });
+    //   window.addEventListener("resize", function () {
+    //     // 높이를 다시 계산하고 애니메이션 상태 갱신
+    //     scrollEvent();
+    //   });
 
-      // 페이지 로드 시 한번 체크
-      scrollEvent();
-    };
+    //   // 페이지 로드 시 한번 체크
+    //   scrollEvent();
+    // };
 
-    var scrollEvent = function () {
-      // 사용자 모니터 화면 높이 + 스크롤이 움직인 높이
-      // var scrollPosition = window.pageYOffset;
-      var scrollPosition = document.documentElement.scrollTop;
-      var windowHeight = document.documentElement.clientHeight;
-      // var windowHeight = window.innerHeight;
+    // var scrollEvent = function () {
+    //   // 사용자 모니터 화면 높이 + 스크롤이 움직인 높이
+    //   // var scrollPosition = window.pageYOffset;
+    //   var scrollPosition = document.documentElement.scrollTop;
+    //   var windowHeight = document.documentElement.clientHeight;
+    //   // var windowHeight = window.innerHeight;
 
-      // 애니메이션 효과를 넣을 DOM 객체 배열
-      var itemList = document.querySelectorAll("div.animatable, div.animated");
+    //   // 애니메이션 효과를 넣을 DOM 객체 배열
+    //   var itemList = document.querySelectorAll("div.animatable, div.animated");
 
-      Array.prototype.forEach.call(itemList, function (i) {
-        var iTop = i.offsetTop;
-        var iBottom = iTop + i.clientHeight;
+    //   Array.prototype.forEach.call(itemList, function (i) {
+    //     var iTop = i.offsetTop;
+    //     var iBottom = iTop + i.clientHeight;
 
-        // 객체 위치와 높이 비교 : 화면에 표출되는 높이인지 체크
-        if (iBottom > scrollPosition && iTop < scrollPosition + windowHeight) {
-          // 객체 animatable 클래스 지우고, animated 클래스 추가
-          i.classList.remove("animatable");
-          i.classList.add("animated");
-        } else if (
-          iBottom < scrollPosition ||
-          iTop > scrollPosition + windowHeight
-        ) {
-          // 객체 animated 클래스 지우고, animatable 클래스 추가
-          i.classList.remove("animated");
-          i.classList.add("animatable");
-        }
-      });
-    };
+    //     // 객체 위치와 높이 비교 : 화면에 표출되는 높이인지 체크
+    //     if (iBottom > scrollPosition && iTop < scrollPosition + windowHeight) {
+    //       // 객체 animatable 클래스 지우고, animated 클래스 추가
+    //       i.classList.remove("animatable");
+    //       i.classList.add("animated");
+    //     } else if (
+    //       iBottom < scrollPosition ||
+    //       iTop > scrollPosition + windowHeight
+    //     ) {
+    //       // 객체 animated 클래스 지우고, animatable 클래스 추가
+    //       i.classList.remove("animated");
+    //       i.classList.add("animatable");
+    //     }
+    //   });
+    // };
 
     var pageSet = (n) => {
       page = n;
