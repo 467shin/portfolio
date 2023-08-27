@@ -407,7 +407,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
 <script>
   darkModeActive = () => {
-    console.log(document.querySelector('html').classList.contains('dark'))
     localStorage.getItem('dark') && document.querySelector('html').classList.add('dark')
   }
   darkModeActive()
